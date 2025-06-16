@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import bookRoutes from './routes/bookRoutes';
 import metaRoutes from './routes/metaRoutes';
+import setupSwagger from './config/swagger';
 
 dotenv.config();
 
@@ -16,6 +17,9 @@ app.use(express.json());
 // Routes
 app.use('/api/books', bookRoutes);
 app.use('/api/meta', metaRoutes);
+
+// Setup Swagger
+setupSwagger(app);
 
 // Database connection
 mongoose.connect(process.env.MONGODB_URI as string)

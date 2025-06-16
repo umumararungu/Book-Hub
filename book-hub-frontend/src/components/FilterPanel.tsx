@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBooks } from '../contexts/BookContext';
-import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Slider, Typography, Box, Chip, Stack } from '@mui/material';
+import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Typography, Box, Chip, Stack } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const FilterPanel: React.FC = () => {

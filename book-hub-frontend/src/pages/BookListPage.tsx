@@ -32,12 +32,12 @@ const BookListPage: React.FC = () => {
   return (
     <Container maxWidth="xl" sx={{ mt: 4 }}>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={3}>
+        <Grid size={{xs: 12, md: 3}} >
           <Paper elevation={3}>
             <FilterPanel />
           </Paper>
         </Grid>
-        <Grid item xs={12} md={9}>
+        <Grid size={{xs: 12, md: 9}} >
           <Typography variant="h4" component="h1" gutterBottom>
             Discover Books
           </Typography>
@@ -46,7 +46,7 @@ const BookListPage: React.FC = () => {
           ) : (
             <Grid container spacing={3}>
               {filteredBooks.map((book) => (
-                <Grid item key={book._id} xs={12} sm={6} md={4} lg={3}>
+                <Grid size={{ xs:2, sm:6, md:4, lg:3 }} >
                   <BookCard book={book} onViewDetails={handleViewDetails} />
                 </Grid>
               ))}

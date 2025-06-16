@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book } from '../types/book';
+import type { Book } from '../types/book';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, Rating } from '@mui/material';
 
 interface BookCardProps {

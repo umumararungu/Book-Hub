@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchBookDetails } from '../services/api';
-import { Book } from '../types/book';
-import { Container, Typography, Paper, Grid, Rating, Box, Button } from '@mui/material';
+import type { Book } from '../types/book';
+import { Container, Typography, Paper, Rating, Box, Button, CircularProgress, Alert, Chip } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
 
 const BookDetailPage: React.FC = () => {
@@ -58,15 +59,18 @@ const BookDetailPage: React.FC = () => {
       </Button>
       <Paper elevation={3} sx={{ p: 4 }}>
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+
+         <Grid size={{xs: 12, md: 4}} >
             <Box
               component="img"
               src={book.coverImage || '/placeholder-book-cover.png'}
               alt={book.title}
               sx={{ width: '100%', maxHeight: 400, objectFit: 'contain', backgroundColor: '#f5f5f5' }}
             />
-          </Grid>
-          <Grid item xs={12} md={8}>
+          </Grid> 
+
+          <Grid size={{xs: 12, md: 8}} >
+            
             <Typography variant="h3" component="h1" gutterBottom>
               {book.title}
             </Typography>

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Book, FilterOptions } from '../types/book';
+import type { Book, FilterOptions } from '../types/book';
 import { fetchBooks, fetchGenres, fetchAuthors } from '../services/api';
 
 interface BookContextType {
