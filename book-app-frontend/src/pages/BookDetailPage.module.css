@@ -1,0 +1,74 @@
+/* src/pages/BookDetailPage.module.css */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.notFound {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #d32f2f;
+  margin-top: 50px;
+}
+
+.backButton {
+  margin-bottom: 30px;
+  background-color: #1976d2;
+  color: white;
+}
+
+.backButton:hover {
+  background-color: #1565c0;
+}
+
+.bookDetail {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.coverImage {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details {
+  flex: 1;
+}
+
+.details h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.details h2 {
+  font-size: 1.3rem;
+  color: #666;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.description {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .bookDetail {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .coverImage {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
