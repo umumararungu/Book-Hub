@@ -15,12 +15,12 @@
 
 .backButton {
   margin-bottom: 30px;
-  background-color: #1976d2;
+  background-color: #050505;
   color: white;
 }
 
 .backButton:hover {
-  background-color: #1565c0;
+  background-color: #050505;
 }
 
 .bookDetail {

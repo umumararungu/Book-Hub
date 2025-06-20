@@ -18,7 +18,7 @@ const BookList: React.FC = () => {
   };
 
   return (
-    <div className={styles.listContainer}>
+    <div className={styles.bookGrid}>
       {books.map((book) => (
         <BookCard 
           key={book._id} 

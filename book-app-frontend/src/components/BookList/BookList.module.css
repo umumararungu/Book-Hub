@@ -1,29 +1,32 @@
-/* src/components/BookList/BookList.module.css */
-.listContainer {
+/* Grid layout for book cards */
+.bookGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 1rem;
-  width: 100%;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+  gap: 24px; /* Space between cards */
+  padding: 20px;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Responsive adjustments */
 @media (max-width: 1024px) {
-  .listContainer {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
+  .bookGrid {
+    grid-template-columns: repeat(3, 1fr); /* Still 3 columns on tablets */
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .listContainer {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+  .bookGrid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller tablets */
+    gap: 16px;
   }
 }
 
 @media (max-width: 480px) {
-  .listContainer {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.75rem;
+  .bookGrid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 12px;
   }
 }
