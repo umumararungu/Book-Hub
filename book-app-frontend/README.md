@@ -52,3 +52,77 @@ export default tseslint.config({
   },
 })
 ```
+
+### Book app Front End Documentation
+
+## Technology used
+
+- React
+- Redux Tookkit
+- Typescript
+- CSS Modules
+
+## Front End Setup
+
+``` bash
+/src
+  /features
+    /books         ← Redux slice for books
+    /user          ← Redux slice for auth (planned)
+  /components
+    /SearchBar
+    /BookList
+    /RatingStars   ← (future)
+  /pages
+    HomePage.tsx
+  /api
+    bookApi.ts     ← API calls
+  /types
+    book.ts
+    filters.ts
+```
+## To run Front End
+``` bash
+cd frontend
+npm install
+npm run dev  # or npm start
+```
+runs at http://localhost:5173
+
+## Key Features
+Books are fetched from backend and stored in Redux
+
+# Search & Filter
+- by title or author
+- live filtering using Redux FilterBooks State
+
+# Planned Features
+- User login/logout
+- Book rating(1 to 5)
+- Admin : add/edit/delete books
+
+## Redux Overview
+
+# bookSlice.ts
+- manages:
+  - books:all books
+  - filteredBooks: Search Results
+  - filters: current search/sort settings
+
+# key Actions
+
+``` ts
+loadBooks()            // fetch all books
+setSearchQuery(query)  // search by title/author
+setSortBy('title')     // sort books
+
+```
+
+# API Call(bookApi.ts)
+
+```ts
+export const fetchBooks = async () => {
+  const response = await fetch('http://localhost:5000/api/books');
+  return await response.json();
+};
+```
