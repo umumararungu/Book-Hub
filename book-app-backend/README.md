@@ -39,7 +39,7 @@ npm run dev
 |Method|Endpoint|Description|
 |------|--------|-----------|
 |GET|/api/books|Get all books|
-
+|---|----------|-------------|
 |GET|/api/books/:id|Get book by ID|
 |---|--------------|--------------|
 |POST|/api/books| Add new book|
