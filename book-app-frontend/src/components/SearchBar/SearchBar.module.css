@@ -15,3 +15,15 @@
 .searchInput:focus {
   border-color: #1976d2;
 }
+
+.search{
+  padding: 5px;
+  border-radius: 5px;
+  width:20%;
+  margin: 1%;
+
+}
+
+.search:hover{
+  font-size: 15px;
+}

@@ -8,25 +8,27 @@ import {
   setPublicationDate
 } from '../../features/books/booksSlice';
 
+import styles from './SearchBar.module.css';
+
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <input
+    <div >
+      <input className={styles.search}
         type="text"
         placeholder="Search books..."
         onChange={(e) => dispatch(setSearchQuery(e.target.value))}
       />
 
-      <select onChange={(e) => dispatch(setSortBy(e.target.value as any))}>
+      <select className={styles.search} onChange={(e) => dispatch(setSortBy(e.target.value as any))}>
         <option value="title">Sort by Title</option>
         <option value="author">Sort by Author</option>
         <option value="date">Newest First</option>
         <option value="rating">Highest Rated</option>
       </select>
 
-      <select onChange={(e) => dispatch(setGenreFilter(e.target.value))}>
+      <select className={styles.search} onChange={(e) => dispatch(setGenreFilter(e.target.value))}>
         <option value="">All Genres</option>
         <option value="Fiction">Fiction</option>
         <option value="contemporary romance">Contemporary Romance</option>
@@ -36,7 +38,7 @@ const SearchBar: React.FC = () => {
         <option value="Romance">Romance</option>
       </select>
 
-      <input
+      <input className={styles.search}
         type="number"
         placeholder="Min rating"
         min="0"
@@ -44,7 +46,7 @@ const SearchBar: React.FC = () => {
         onChange={(e) => dispatch(setMinRating(Number(e.target.value)))}
       />
 
-      <input
+      <input className={styles.search}
         type="date"
         onChange={(e) => dispatch(setPublicationDate(e.target.value))}
       />
