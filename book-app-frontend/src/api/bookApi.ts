@@ -2,7 +2,7 @@ import type { Book } from '../types/book';
 
 const API_BASE_URL = 'http://localhost:5000/api/books';
 
-// Generic function to handle fetch errors
+
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));

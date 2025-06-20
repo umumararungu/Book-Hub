@@ -1,14 +1,14 @@
-// features/ratings/ratingsSlice.ts
+
 import { createSlice,type PayloadAction } from '@reduxjs/toolkit';
 
 interface Rating {
   bookId: string;
   userId: string;
-  score: number; // from 1 to 5
+  score: number; 
 }
 
 interface RatingsState {
-  ratings: Rating[]; // ratings by user/book
+  ratings: Rating[]; 
 }
 
 const initialState: RatingsState = {
@@ -23,7 +23,7 @@ const ratingsSlice = createSlice({
       const { bookId, userId, score } = action.payload;
       const existing = state.ratings.find(r => r.bookId === bookId && r.userId === userId);
       if (existing) {
-        existing.score = score; // update existing
+        existing.score = score; 
       } else {
         state.ratings.push({ bookId, userId, score });
       }

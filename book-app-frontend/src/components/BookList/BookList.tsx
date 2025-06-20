@@ -13,7 +13,7 @@ const BookList: React.FC = () => {
   const navigate = useNavigate();
 
   const handleBookClick = (id: string) => {
-    // Navigate to the book detail page with the book ID
+
     navigate(`/books/${id}`);
   };
 

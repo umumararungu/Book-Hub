@@ -1,8 +1,8 @@
 /* Grid layout for book cards */
 .bookGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
-  gap: 24px; /* Space between cards */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   padding: 20px;
   width: 80%;
   max-width: 1200px;
@@ -12,21 +12,21 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .bookGrid {
-    grid-template-columns: repeat(3, 1fr); /* Still 3 columns on tablets */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .bookGrid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on smaller tablets */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 16px;
   }
 }
 
 @media (max-width: 480px) {
   .bookGrid {
-    grid-template-columns: 1fr; /* 1 column on mobile */
+    grid-template-columns: 1fr; 
     gap: 12px;
   }
 }

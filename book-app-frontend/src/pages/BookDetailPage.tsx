@@ -13,7 +13,7 @@ const BookDetailPage: React.FC = () => {
     book._id.toString() === id )
   );
   
- console.log('BookDetailPage - ID:', id, 'Found book:', book); // Debug log
+ console.log('BookDetailPage - ID:', id, 'Found book:', book);
 
 
   if (!book) {

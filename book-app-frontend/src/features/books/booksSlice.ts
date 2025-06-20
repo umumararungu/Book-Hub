@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { type Book } from '../../types/book';
 import { type FilterOptions } from '../../types/filters';
-import { fetchBooks} from '../../api/bookApi';
+import { fetchBooks } from '../../api/bookApi';
 
 interface BooksState {
   books: Book[];
@@ -36,42 +36,69 @@ export const loadBooks = createAsyncThunk(
   }
 );
 
-
-
 const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
     setBooks(state, action: PayloadAction<Book[]>) {
       state.books = action.payload;
-      state.filteredBooks = action.payload;
-      state.loading = false;
+      booksSlice.caseReducers.applyFilters(state);
     },
     setSearchQuery(state, action: PayloadAction<string>) {
       state.filters.searchQuery = action.payload;
-      const query = action.payload.trim().toLowerCase();
-    
-      if (!query) {
-        state.filteredBooks = state.books;
-        return;
-      }
-    
-      state.filteredBooks = state.books.filter((book: { title: string; author: string }) =>
-        book.title.toLowerCase().includes(query) ||
-        book.author.toLowerCase().includes(query)
-      );
+      booksSlice.caseReducers.applyFilters(state);
     },
-    setSortBy(state, action: PayloadAction<'title' | 'author' | 'date'>) {
+    setSortBy(state, action: PayloadAction<'title' | 'author' | 'date' | 'rating'>) {
       state.filters.sortBy = action.payload;
-      state.filteredBooks = [...state.filteredBooks].sort((a, b) => {
-        if (action.payload === 'title') {
-          return a.title.localeCompare(b.title);
-        } else if (action.payload === 'author') {
-          return a.author.localeCompare(b.author);
-        } else {
-          return new Date(a.publicationDate).getTime() - new Date(b.publicationDate).getTime();
-        }
+      booksSlice.caseReducers.applyFilters(state);
+    },
+    setGenreFilter(state, action: PayloadAction<string>) {
+      state.filters.genre = action.payload;
+      booksSlice.caseReducers.applyFilters(state);
+    },
+    setMinRating(state, action: PayloadAction<number>) {
+      state.filters.minRating = action.payload;
+      booksSlice.caseReducers.applyFilters(state);
+    },
+    setPublicationDate(state, action: PayloadAction<string>) {
+      state.filters.publicationDate = action.payload;
+      booksSlice.caseReducers.applyFilters(state);
+    },
+    applyFilters(state) {
+      const { searchQuery, genre, minRating, publicationDate, sortBy } = state.filters;
+      let result = [...state.books];
+
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        result = result.filter(book =>
+          book.title.toLowerCase().includes(query) ||
+          book.author.toLowerCase().includes(query)
+        );
+      }
+
+      if (genre) {
+        result = result.filter(book => Array.isArray(book.genres) && book.genres.includes(genre));
+      }
+
+      if (minRating !== undefined) {
+result = result.filter(book => (book.rating ?? 0) >= minRating);
+      }
+
+      if (publicationDate) {
+        result = result.filter(book =>
+          new Date(book.publicationDate) >= new Date(publicationDate)
+        );
+      }
+
+      result.sort((a, b) => {
+        if (sortBy === 'title') return a.title.localeCompare(b.title);
+        if (sortBy === 'author') return a.author.localeCompare(b.author);
+        if (sortBy === 'date') return new Date(b.publicationDate).getTime() - new Date(a.publicationDate).getTime();
+        if (sortBy === 'rating') return (b.rating ?? 0) - (a.rating ?? 0);
+        return 0;
       });
+
+      state.filteredBooks = result;
     },
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
@@ -95,17 +122,26 @@ const booksSlice = createSlice({
           return;
         }
         state.books = action.payload;
-        state.filteredBooks = action.payload; // ✅ Add this line
+        booksSlice.caseReducers.applyFilters(state);
         state.error = null;
       })
-        
       .addCase(loadBooks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
   },
-
 });
 
-export const { setBooks, setSearchQuery, setSortBy, setLoading, setError} = booksSlice.actions;
+export const {
+  setBooks,
+  setSearchQuery,
+  setSortBy,
+  setGenreFilter,
+  setMinRating,
+  setPublicationDate,
+  setLoading,
+  setError,
+  applyFilters,
+} = booksSlice.actions;
+
 export default booksSlice.reducer;
