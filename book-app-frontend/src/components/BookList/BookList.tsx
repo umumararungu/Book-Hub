@@ -1,18 +1,30 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../store';
 import BookCard from '../BookCard/BookCard';
 import styles from './BookList.module.css';
 
 const BookList: React.FC = () => {
-  const books = useSelector((state: RootState) => state.books.books);
+  const books = useSelector((state: RootState) => {
+    console.log('Current books in store:', state.books.books);
+    return state.books.books;
+  });
+  const navigate = useNavigate();
+
+  const handleBookClick = (id: string) => {
+    // Navigate to the book detail page with the book ID
+    navigate(`/books/${id}`);
+  };
 
   return (
     <div className={styles.listContainer}>
       {books.map((book) => (
-        <BookCard key={book.id} book={book} onClick={function (): void {
-          throw new Error('Function not implemented.');
-        } } />
+        <BookCard 
+          key={book._id} 
+          book={book} 
+          onClick={() => handleBookClick(book._id)} 
+        />
       ))}
     </div>
   );

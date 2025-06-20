@@ -9,7 +9,9 @@ import { loadBooks } from '../features/books/booksSlice';
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error } = useSelector((state: RootState) => state.books);
+  const { loading, error } = useSelector((state: RootState) => {console.log('Current Redux state:', state.books);
+    return state.books;
+  });
 
   useEffect(() => {
     const fetchBooks = async () => {

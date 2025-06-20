@@ -16,9 +16,17 @@ const handleResponse = async <T>(response: Response): Promise<T> => {
 export const fetchBooks = async (): Promise<Book[]> => {
   try {
     const response = await fetch(API_BASE_URL);
-    return handleResponse<Book[]>(response);
+    if (response.status === 404) {
+      throw new Error('Books endpoint not found (404)');
+    }
+    const data = await handleResponse<Book[]>(response);
+    if (!data || data.length === 0) {
+      throw new Error('No books available in the database');
+    }
+    return data;
   } catch (err) {
-    throw new Error(err instanceof Error ? err.message : 'Failed to fetch books');
+    console.error('API Error:', err);
+    throw err;
   }
 };
 

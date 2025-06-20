@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { type Book } from '../../types/book';
 import { type FilterOptions } from '../../types/filters';
-import { fetchBooks } from '../../api/bookApi';
+import { fetchBooks} from '../../api/bookApi';
 
 interface BooksState {
   books: Book[];
@@ -35,6 +35,8 @@ export const loadBooks = createAsyncThunk(
     }
   }
 );
+
+
 
 const booksSlice = createSlice({
   name: 'books',
@@ -81,9 +83,14 @@ const booksSlice = createSlice({
       })
       .addCase(loadBooks.fulfilled, (state, action) => {
         state.loading = false;
+        if (!action.payload) {
+          state.error = 'Received empty book data';
+          return;
+        }
         state.books = action.payload;
-        state.filteredBooks = action.payload;
+        state.error = null;
       })
+        
       .addCase(loadBooks.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
@@ -92,5 +99,5 @@ const booksSlice = createSlice({
 
 });
 
-export const { setBooks, setSearchQuery, setSortBy, setLoading, setError } = booksSlice.actions;
+export const { setBooks, setSearchQuery, setSortBy, setLoading, setError} = booksSlice.actions;
 export default booksSlice.reducer;

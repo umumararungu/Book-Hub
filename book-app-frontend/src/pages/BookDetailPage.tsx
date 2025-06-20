@@ -9,8 +9,12 @@ const BookDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const book = useSelector((state: RootState) => 
-    state.books.books.find(book => book.id === id)
+    state.books.books.find(book => book._id === id || 
+    book._id.toString() === id )
   );
+  
+ console.log('BookDetailPage - ID:', id, 'Found book:', book); // Debug log
+
 
   if (!book) {
     return <div className={styles.notFound}>Book not found</div>;
