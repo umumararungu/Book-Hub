@@ -1,8 +1,7 @@
-// controllers/bookController.js
 const Book = require('../models/Book');
 
-// @desc    Get all books
-// @route   GET /api/books
+//     Get all books
+//   GET /api/books
 exports.getBooks = async (req, res) => {
   try {
     const books = await Book.find();
@@ -12,8 +11,8 @@ exports.getBooks = async (req, res) => {
   }
 };
 
-// @desc    Get single book
-// @route   GET /api/books/:id
+//    Get single book
+//   GET /api/books/:id
 exports.getBook = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
@@ -26,8 +25,8 @@ exports.getBook = async (req, res) => {
   }
 };
 
-// @desc    Create book
-// @route   POST /api/books
+//    Create book
+//    POST /api/books
 exports.createBook = async (req, res) => {
   try {
     const book = new Book(req.body);
@@ -38,8 +37,8 @@ exports.createBook = async (req, res) => {
   }
 };
 
-// @desc    Update book
-// @route   PUT /api/books/:id
+//    Update book
+//   PUT /api/books/:id
 exports.updateBook = async (req, res) => {
   try {
     const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
@@ -55,8 +54,8 @@ exports.updateBook = async (req, res) => {
   }
 };
 
-// @desc    Delete book
-// @route   DELETE /api/books/:id
+//     Delete book
+//   DELETE /api/books/:id
 exports.deleteBook = async (req, res) => {
   try {
     const book = await Book.findByIdAndDelete(req.params.id);
