@@ -7,8 +7,8 @@ import styles from './BookList.module.css';
 
 const BookList: React.FC = () => {
   const books = useSelector((state: RootState) => {
-    console.log('Current books in store:', state.books.books);
-    return state.books.books;
+    console.log('Current books in store:', state.books.filteredBooks);
+    return state.books.filteredBooks;
   });
   const navigate = useNavigate();
 

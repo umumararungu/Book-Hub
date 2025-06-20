@@ -49,9 +49,16 @@ const booksSlice = createSlice({
     },
     setSearchQuery(state, action: PayloadAction<string>) {
       state.filters.searchQuery = action.payload;
-      state.filteredBooks = state.books.filter((book: { title: string; author: string; }) => 
-        book.title.toLowerCase().includes(action.payload.toLowerCase()) ||
-        book.author.toLowerCase().includes(action.payload.toLowerCase())
+      const query = action.payload.trim().toLowerCase();
+    
+      if (!query) {
+        state.filteredBooks = state.books;
+        return;
+      }
+    
+      state.filteredBooks = state.books.filter((book: { title: string; author: string }) =>
+        book.title.toLowerCase().includes(query) ||
+        book.author.toLowerCase().includes(query)
       );
     },
     setSortBy(state, action: PayloadAction<'title' | 'author' | 'date'>) {
@@ -88,6 +95,7 @@ const booksSlice = createSlice({
           return;
         }
         state.books = action.payload;
+        state.filteredBooks = action.payload; // ✅ Add this line
         state.error = null;
       })
         

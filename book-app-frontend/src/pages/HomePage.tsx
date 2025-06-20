@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import styles from './HomePage.module.css';
 import { loadBooks } from '../features/books/booksSlice';
 
+
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error } = useSelector((state: RootState) => {console.log('Current Redux state:', state.books);
