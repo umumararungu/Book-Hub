@@ -11,13 +11,19 @@
 
 /backend
   /routes
-    auth.js       ← User login/register
-    books.js      ← Get all books (public)
-    ratings.js    ← Add/view ratings (auth required)
+    bookRoutes.js      ← Get all books (public)
   /models
     Book.js
-    User.js
+
+  /config
+    db.js        ← file for Database connection
+  /seed
+   seedDatabase.js    ← initial Database
+
+  /swagger
+   swagger.js   ← API Documentation
   server.js
+  
 ```
 # to run back end 
  ``` bash
