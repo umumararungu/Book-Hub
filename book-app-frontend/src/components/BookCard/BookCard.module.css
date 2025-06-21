@@ -54,6 +54,11 @@
   margin: 0 0 0.5rem 0;
 }
 
+.rating {
+  color: rgb(175, 153, 25);
+  font-size: 1.2rem;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 0.9rem;
