@@ -37,6 +37,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onClick }) => {
       <div className={styles.content}>
         <h3 className={styles.title}>{book.title}</h3>
         <p className={styles.author}>{book.author}</p>
+        <p className={styles.author}>{book.genres}</p>
         <p className={styles.rating} aria-label={`Rating: ${book.rating} out of 5`}>
           {renderStars(book.rating)}
         </p>
